@@ -1,0 +1,54 @@
+HASHSET – SIMPLE NOTES (BEGINNER FRIENDLY)
+
+1. What is HashSet?
+HashSet is a collection in Java that stores UNIQUE elements.
+It does NOT maintain insertion order or sorting order.
+
+2. How HashSet works internally (simple idea)
+Think of HashSet as many boxes (called buckets).
+
+When you add an element:
+- Java calls hashCode() of the element
+- hashCode decides which bucket to use
+- Java checks inside that bucket
+
+3. Duplicate check in HashSet
+HashSet uses two methods:
+- hashCode()
+- equals()
+
+Process:
+- Same hashCode → go to same bucket
+- equals() returns true → duplicate → NOT added
+- equals() returns false → element is added
+
+4. Why no duplicates?
+Before adding any element, HashSet checks:
+existingElement.equals(newElement)
+If true → duplicate → ignored
+
+5. Why HashSet has no order?
+Elements are placed based on hashCode.
+hashCode does not follow insertion or sorting order.
+So order is NOT guaranteed.
+
+6. Important rules to remember
+- HashSet allows only unique elements
+- Uses hashCode() and equals()
+- Order is unpredictable
+- Internally backed by HashMap
+
+7. Simple example
+HashSet<Integer> set = new HashSet<>();
+set.add(5);
+set.add(5);
+set.add(10);
+
+Output:
+[5, 10]
+
+Reason:
+Duplicate 5 is ignored.
+
+8. One-line summary
+HashSet stores elements in buckets using hashCode() and avoids duplicates using equals().

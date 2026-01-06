@@ -1,0 +1,103 @@
+Comparable vs Comparator in Java
+
+1. Comparable Interface
+
+Definition:
+Comparable is used to define the natural ordering of objects.
+The class itself decides how its objects should be compared.
+
+Package:
+java.lang
+
+Method:
+int compareTo(T o)
+
+Key Characteristics:
+- Sorting logic is inside the class
+- Only one sorting order is possible
+- The class must implement Comparable
+- Used by default in sorting methods
+
+Example:
+class Student implements Comparable<Student> {
+    int marks;
+
+    Student(int marks) {
+        this.marks = marks;
+    }
+
+    @Override
+    public int compareTo(Student s) {
+        return this.marks - s.marks;
+    }
+}
+
+Usage:
+Collections.sort(studentList);
+
+When to Use:
+- When there is one natural order
+- Examples: ID, roll number, age
+
+
+2. Comparator Interface
+
+Definition:
+Comparator is used to define custom or multiple sorting orders.
+The sorting logic is written outside the class.
+
+Package:
+java.util
+
+Method:
+int compare(T o1, T o2)
+
+Key Characteristics:
+- Sorting logic is separate from the class
+- Supports multiple sorting strategies
+- Original class need not be modified
+- Useful for flexible sorting
+
+Example:
+class SortByMarks implements Comparator<Student> {
+    @Override
+    public int compare(Student s1, Student s2) {
+        return s1.marks - s2.marks;
+    }
+}
+
+Usage:
+Collections.sort(studentList, new SortByMarks());
+
+When to Use:
+- When multiple sorting orders are required
+- Examples: by marks, by name, by age
+
+
+3. Differences Between Comparable and Comparator
+
+Comparable:
+- Package: java.lang
+- Method: compareTo()
+- Sorting logic: inside class
+- Class modification required
+- Single sorting order
+
+Comparator:
+- Package: java.util
+- Method: compare()
+- Sorting logic: outside class
+- No class modification required
+- Multiple sorting orders
+
+
+4. Memory Trick
+
+Comparable: I can compare myself
+Comparator: Someone else compares me
+
+
+5. Interview One-Liner
+
+Comparable defines natural ordering.
+Comparator defines custom ordering.
